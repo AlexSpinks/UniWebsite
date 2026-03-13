@@ -1,0 +1,10 @@
+name: uniwebsite
+static_sites:
+  - name: uniwebsite
+    github:
+      repo: AlexSpinks/UniWebsite
+      branch: main
+      deploy_on_push: true
+    source_dir: /
+    index_document: Index.html
+    error_document: Index.html
