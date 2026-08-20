@@ -336,7 +336,7 @@
             <h2>Get in Touch</h2>
             <p>Please fill out the form below for recruitment enquiries or networking opportunities.</p>
             
-            <form id="contactForm" onsubmit="return validateForm(event)">
+            <form id="contactForm" action="https://formspree.io/f/xwleazvq" method="POST" onsubmit="return validateForm(event)">
                 <fieldset>
                     <legend>Contact Info</legend>
                     
@@ -416,16 +416,36 @@
         }
 
         function validateForm(event) {
-            let isValid = true;
-            
-            const surnameInput = document.getElementById('sname').value.trim();
-            const surnameError = document.getElementById('surnameError');
-            if (surnameInput === "") {
-                surnameError.style.display = 'block';
-                isValid = false;
-            } else {
-                surnameError.style.display = 'none';
-            }
+    let isValid = true;
+    
+    const surnameInput = document.getElementById('sname').value.trim();
+    const surnameError = document.getElementById('surnameError');
+    if (surnameInput === "") {
+        surnameError.style.display = 'block';
+        isValid = false;
+    } else {
+        surnameError.style.display = 'none';
+    }
+
+    const emailInput = document.getElementById('email').value;
+    const emailError = document.getElementById('emailError');
+    if (emailInput.indexOf('@') === -1) {
+        emailError.style.display = 'block';
+        isValid = false;
+    } else {
+        emailError.style.display = 'none';
+    }
+
+    if (!isValid) {
+        // Stops submission ONLY if there are errors
+        event.preventDefault(); 
+        alert("Please correct the errors in the form before submitting.");
+    } 
+    // We removed the 'else' block that had event.preventDefault() 
+    // so that if isValid is true, the form naturally submits!
+
+    return isValid;
+}
 
             const emailInput = document.getElementById('email').value;
             const emailError = document.getElementById('emailError');
